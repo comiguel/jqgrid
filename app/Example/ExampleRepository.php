@@ -1,5 +1,6 @@
 <?php namespace Example;
 
+use User;
 use Illuminate\Database\Eloquent\Model;
 use Mgallegos\LaravelJqgrid\Repositories\EloquentRepositoryAbstract;
 

@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+// Route::get('/', function()
+// {
+// 	return View::make('hello');
+// });
 Route::controller('example', 'AppController');
+Route::post('grid-edit','AppController@operar');

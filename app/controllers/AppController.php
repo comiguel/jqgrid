@@ -24,4 +24,31 @@ class AppController extends BaseController {
         $this->GridEncoder->encodeRequestedData(new ExampleRepository(), Input::all());
     }
 
+    public function operar(){
+        $operacion = Input::get('oper');
+
+        switch ($operacion) {
+            case 'add':
+                    $user = new User;
+                    $user->name = Input::get('name');
+                    $user->lastname = Input::get('lastname');
+                    $user->email = Input::get('email');
+                    $user->save();
+                break;
+
+            case 'edit':
+                    $user = User::find(Input::get('id'));
+                    $user->name = Input::get('name');
+                    $user->lastname = Input::get('lastname');
+                    $user->email = Input::get('email');
+                    $user->save();
+                break;
+
+            case 'del':
+                    $user = User::find(Input::get('id'));
+                    $user->delete();
+                break;
+        }
+    }
+
 }

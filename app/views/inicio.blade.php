@@ -18,29 +18,34 @@
 	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/js/bootstrapValidator.min.js"></script>
 </head>
 <body>
+	<br><br>
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-6 center">
+			<div class="col-xs-6 col-xs-offset-2 center">
 				{{ 
 				    GridRender::setGridId("myFirstGrid")
 				            ->enablefilterToolbar()
-				            ->setGridOption('url',url('example/grid-data'))
-				            ->setGridOption('rowNum',5)
-				            ->setGridOption('shrinkToFit',false)
+				            ->setGridOption('url',URL::to('example/grid-data'))
+				            ->setGridOption('rowNum',10)
+				            ->setGridOption('width',700)
+	            			->setGridOption('height',250)
+				            ->setGridOption('rowList',array(10,15,20,50,100))
 				            ->setGridOption('sortname','id')
 				            ->setGridOption('caption','LaravelJqGrid example')
-				            ->setNavigatorOptions('navigator', array('viewtext'=>'view'))
+	            			->setGridOption('editurl',URL::to('/grid-edit'))
+	            			->setGridOption('viewrecords',true)
+				            ->setNavigatorOptions('navigator', array('viewtext'=>''))
 				            ->setNavigatorOptions('view',array('closeOnEscape'=>false))
 				            ->setFilterToolbarOptions(array('autosearch'=>true))
-				            ->setGridEvent('gridComplete', 'function(){alert("Grid complete event");}') 
-				            ->setNavigatorEvent('view', 'beforeShowForm', 'function(){alert("Before show form");}')
-				            ->setFilterToolbarEvent('beforeSearch', 'function(){alert("Before search event");}') 
-				            ->addColumn(array('index'=>'id', 'width'=>55))
-				            ->addColumn(array('name'=>'name','width'=>100))
-				            ->addColumn(array('name'=>'lastname','index'=>'lastname', 'width'=>80, 'align'=>'right'))
-				            ->addColumn(array('name'=>'username','index'=>'username', 'width'=>80))
-				            ->addColumn(array('name'=>'email','index'=>'email', 'width'=>55,'searchoptions'=>array('attr'=>array('title'=>'Note title'))))
-				            ->renderGrid(); 
+				            ->setGridEvent('gridComplete', 'function(){}')
+				            ->setGridEvent('onSelectRow', 'function(id){alert("seleccionaste "+id)}')
+				            ->setNavigatorEvent('view', 'beforeShowForm', 'function(){}')
+				            ->setFilterToolbarEvent('beforeSearch', 'function(){}')
+				            ->addColumn(array('index'=>'id', 'width'=>35, 'align'=>'center'))
+				            ->addColumn(array('name'=>'name','width'=>100, 'align'=>'center', 'editable'=> true))
+				            ->addColumn(array('name'=>'lastname','index'=>'lastname', 'width'=>100, 'align'=>'center', 'editable'=> true))
+				            ->addColumn(array('name'=>'email','index'=>'email', 'width'=>100, 'align'=>'center', 'editable'=> true))
+				            ->renderGrid();
 				}}
 			</div>
 		</div>
